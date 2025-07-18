@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page_title }}</title>
+    <script src="[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>
+    <link href="[https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap](https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap)" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f4f7f6; }
+        .card { background-color: white; border-radius: 0.75rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 1.5rem; margin-bottom: 1rem; transition: transform 0.2s ease-in-out; }
+        .card:hover { transform: translateY(-3px); }
+    </style>
+</head>
+<body class="p-4 sm:p-6 md:p-8">
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-4xl font-bold text-gray-800 mb-8 text-center">{{ page_title }}</h1>
+
+        {% if profiles %}
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {# 5. Call the same key of lists view into lists.html (usually foo) #}
+                {# 6. Use for loop to display query set nang mas maganda #}
+                {# 'profile' here is your "foo" variable, representing each individual object #}
+                {% for profile in profiles %}
+                    <div class="card flex flex-col items-center text-center">
+                        {% if profile.profile_picture %}
+                            <img src="{{ profile.profile_picture.url }}" alt="{{ profile.full_name }}" class="w-24 h-24 rounded-full object-cover mb-4 border-2 border-indigo-300 shadow-md">
+                        {% else %}
+                            <div class="w-24 h-24 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 text-xl font-bold mb-4 border-2 border-indigo-300 shadow-md">
+                                {{ profile.full_name|first }}
+                            </div>
+                        {% endif %}
+                        <h2 class="text-xl font-semibold text-gray-900 mb-2">{{ profile.full_name }}</h2>
+                        {% if profile.professional_title %}
+                            <p class="text-indigo-600 text-sm mb-2">{{ profile.professional_title }}</p>
+                        {% endif %}
+                        <p class="text-gray-600 text-sm mb-4">{{ profile.email }}</p>
+                        {# Link to the detail view using the 'pk' (ID) #}
+                        <a href="{% url 'final:profile_detail' pk=profile.pk %}" class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg transition duration-200 shadow-md">View Profile</a>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="text-center text-gray-600 text-lg">No profiles found. Add some from the admin panel!</p>
+        {% endif %}
+    </div>
+</body>
+</html>

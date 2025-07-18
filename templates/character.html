@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aljon L. Ocampo - Profile</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(to right bottom, #e0f2fe, #bfdbfe); /* Soft blue gradient */
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+        .profile-container {
+            background-color: #ffffff;
+            border-radius: 1.5rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            max-width: 768px; /* Slightly wider for two columns */
+            width: 100%;
+            display: flex;
+            flex-direction: column; /* Default to column for mobile */
+            overflow: hidden; /* Ensures rounded corners are respected */
+        }
+        @media (min-width: 768px) {
+            .profile-container {
+                flex-direction: row; /* Two columns for desktop */
+            }
+        }
+        .sidebar {
+            background-color: #f0f4f8; /* Light gray-blue for sidebar */
+            padding: 2rem;
+            flex-shrink: 0; /* Prevent shrinking */
+            width: 100%;
+            box-sizing: border-box;
+        }
+        @media (min-width: 768px) {
+            .sidebar {
+                width: 35%; /* Sidebar takes 35% width */
+                border-top-left-radius: 1.5rem;
+                border-bottom-left-radius: 1.5rem;
+            }
+        }
+        .main-content {
+            padding: 2rem;
+            flex-grow: 1; /* Main content takes remaining space */
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .section-heading {
+            font-weight: 700; /* Bold */
+            color: #4a5568; /* Dark gray */
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #cbd5e0; /* Light gray border */
+            text-align: left; /* Align heading left */
+        }
+        .item-title {
+            font-weight: 600; /* Semi-bold */
+            color: #2d3748; /* Darker gray */
+            margin-bottom: 0.25rem;
+            text-align: left; /* Align title left */
+        }
+        .item-subtitle {
+            color: #4a5568; /* Dark gray */
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+            text-align: left; /* Align subtitle left */
+        }
+        .item-description {
+            color: #4a5568;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            text-align: left; /* Align description left */
+        }
+        .skill-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            color: #4a5568;
+        }
+        .skill-item i {
+            margin-right: 0.75rem;
+            color: #6366f1; /* Indigo for bullet points */
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <!-- Left Sidebar -->
+        <div class="sidebar">
+            <!-- Profile Picture -->
+            <div class="w-40 h-40 mx-auto mb-6 rounded-xl bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center overflow-hidden border-4 border-white shadow-lg">
+                <img src="https://placehold.co/160x160/ffffff/000000?text=Aljon" alt="Aljon's Profile Picture" class="w-full h-full object-cover rounded-xl" onerror="this.onerror=null;this.src='https://placehold.co/160x160/ffffff/000000?text=Aljon';">
+            </div>
+
+            <!-- Contact Information -->
+            <div class="mb-8 text-left">
+                <h3 class="text-xl font-bold text-gray-800 mb-3">Contact</h3>
+                <p class="flex items-center text-gray-700 mb-2"><i class="fas fa-envelope mr-3 text-indigo-500"></i>alocampo2@student.hau.edu.ph</p>
+                <p class="flex items-center text-gray-700 mb-2"><i class="fas fa-phone mr-3 text-indigo-500"></i>+63 979244709</p>
+                <p class="flex items-center text-gray-700"><i class="fas fa-map-marker-alt mr-3 text-indigo-500"></i>Mexico, Pampanga, Philippines</p>
+            </div>
+
+            <!-- Education -->
+            <div class="mb-8 text-left">
+                <h3 class="text-xl font-bold text-gray-800 mb-3">Education</h3>
+                <div class="mb-4">
+                    <p class="item-title">Senior High School Graduate</p>
+                    <p class="item-subtitle">Don Jesus Gonzales High School</p>
+                    <p class="item-description">Graduated with <span class="font-semibold text-purple-700">"With Honor"</span> award.</p>
+                </div>
+            </div>
+
+            <!-- Skills -->
+            <div class="mb-8 text-left">
+                <h3 class="text-xl font-bold text-gray-800 mb-3">Skills</h3>
+                <div class="skill-item"><i class="fas fa-circle text-xs"></i>Communication Skills</div>
+                <div class="skill-item"><i class="fas fa-circle text-xs"></i>Customer Service</div>
+                <div class="skill-item"><i class="fas fa-circle text-xs"></i>Teamwork</div>
+                <div class="skill-item"><i class="fas fa-circle text-xs"></i>Problem-Solving</div>
+                <div class="skill-item"><i class="fas fa-circle text-xs"></i>Adaptability</div>
+                <!-- Add more skills here -->
+            </div>
+        </div>
+
+        <!-- Right Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <div class="mb-8 text-left">
+                <h1 class="text-5xl sm:text-6xl font-extrabold text-gray-900 leading-tight mb-2">
+                    Aljon L. Ocampo
+                </h1>
+                <!-- Removed the "Hospitality Professional" line -->
+            </div>
+
+            <!-- Profile Summary -->
+            <div class="mb-8">
+                <h2 class="section-heading">Profile</h2>
+                <p class="item-description">
+                    A 19-year-old dedicated and enthusiastic professional currently contributing to the team at <span class="font-bold text-blue-700">Park Inn Radisson</span>. Eager to apply learned skills and grow within a dynamic environment, with a strong commitment to excellence and continuous learning.
+                </p>
+            </div>
+
+            <!-- Work Experience -->
+            <div class="mb-8">
+                <h2 class="section-heading">Work Experience</h2>
+                <div class="mb-4">
+                    <p class="item-title">Current Role</p>
+                    <p class="item-subtitle">Park Inn Radisson | 2024 - Present</p>
+                    <ul class="list-disc list-inside item-description pl-4">
+                        <li>Contributing to daily operations and guest satisfaction.</li>
+                        <li>Developing practical skills in a professional hospitality setting.</li>
+                        <li>Collaborating with team members to achieve operational goals.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Awards (if any, beyond academic honors) -->
+            <div class="mb-8">
+                <h2 class="section-heading">Awards</h2>
+                <div class="mb-4">
+                    <p class="item-title">With Honor Award</p>
+                    <p class="item-subtitle">Don Jesus Gonzales High School | 202X</p>
+                    <p class="item-description">Recognized for academic excellence and consistent dedication during Senior High School.</p>
+                </div>
+                <!-- Add more awards if applicable -->
+            </div>
+        </div>
+    </div>
+</body>
+</html>

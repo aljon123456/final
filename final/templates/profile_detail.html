@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page_title }}</title>
+    <script src="[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>
+    <link href="[https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap](https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap)" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background: linear-gradient(to right bottom, #e0f2fe, #bfdbfe); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 1.5rem; }
+        .profile-card-detail { background-color: white; border-radius: 1.5rem; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); padding: 2.5rem; max-width: 768px; width: 100%; text-align: left; }
+        .section-heading { font-weight: 700; color: #4a5568; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #cbd5e0; }
+        .item-title { font-weight: 600; color: #2d3748; margin-bottom: 0.25rem; }
+        .item-subtitle { color: #4a5568; font-size: 0.95rem; margin-bottom: 0.5rem; }
+        .item-description { color: #4a5568; font-size: 0.9rem; line-height: 1.5; }
+        .skill-item { display: flex; align-items: center; margin-bottom: 0.5rem; color: #4a5568; }
+        .skill-item i { margin-right: 0.75rem; color: #6366f1; }
+    </style>
+</head>
+<body>
+    <div class="profile-card-detail mx-auto">
+        <a href="{% url 'final:profile_list' %}" class="text-indigo-600 hover:text-indigo-800 mb-6 inline-block font-medium">
+            &larr; Back to Profiles
+        </a>
+
+        <div class="flex flex-col sm:flex-row items-center sm:items-start mb-8 border-b pb-6">
+            {% if profile.profile_picture %}
+                <img src="{{ profile.profile_picture.url }}" alt="{{ profile.full_name }}" class="w-32 h-32 rounded-full object-cover mb-4 sm:mb-0 sm:mr-6 border-4 border-indigo-400 shadow-lg">
+            {% else %}
+                <div class="w-32 h-32 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 text-4xl font-bold mb-4 sm:mb-0 sm:mr-6 border-4 border-indigo-400 shadow-lg">
+                    {{ profile.full_name|first }}
+                </div>
+            {% endif %}
+            <div>
+                <h1 class="text-4xl font-extrabold text-gray-900 leading-tight">{{ profile.full_name }}</h1>
+                {% if profile.professional_title %}
+                    <p class="text-xl text-purple-700 font-semibold">{{ profile.professional_title }}</p>
+                {% endif %}
+                {% if profile.age %}
+                    <p class="text-gray-600 text-md mt-1">{{ profile.age }} years old</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="mb-8">
+            <h2 class="section-heading">Contact Information</h2>
+            <p class="item-description mb-2"><strong>Email:</strong> {{ profile.email }}</p>
+            {% if profile.phone_number %}<p class="item-description mb-2"><strong>Phone:</strong> {{ profile.phone_number }}</p>{% endif %}
+            {% if profile.city %}<p class="item-description"><strong>Location:</strong> {{ profile.city }}, {{ profile.country }}</p>{% endif %}
+        </div>
+
+        <!-- Profile Summary -->
+        {% if profile.profile_summary %}
+            <div class="mb-8">
+                <h2 class="section-heading">Profile Summary</h2>
+                <p class="item-description">{{ profile.profile_summary }}</p>
+            </div>
+        {% endif %}
+
+        <!-- Work Experience -->
+        {% if profile.current_company %}
+            <div class="mb-8">
+                <h2 class="section-heading">Work Experience</h2>
+                <p class="item-title">Current Role</p>
+                <p class="item-subtitle">{{ profile.current_company }} | {% if profile.work_start_year %}{{ profile.work_start_year }}{% endif %}{% if profile.work_end_year %} - {{ profile.work_end_year }}{% else %} - Present{% endif %}</p>
+                <ul class="list-disc list-inside item-description pl-4">
+                    <li>Currently contributing to daily operations and guest satisfaction.</li>
+                    <li>Developing practical skills in a professional hospitality setting.</li>
+                    <li>Collaborating with team members to achieve operational goals.</li>
+                </ul>
+            </div>
+        {% endif %}
+
+        <!-- Education -->
+        {% if profile.senior_high_school %}
+            <div class="mb-8">
+                <h2 class="section-heading">Education</h2>
+                <p class="item-title">Senior High School Graduate</p>
+                <p class="item-subtitle">{{ profile.senior_high_school }}</p>
+                {% if profile.senior_high_award %}<p class="item-description">Awarded: <span class="font-semibold">{{ profile.senior_high_award }}</span></p>{% endif %}
+            </div>
+        {% endif %}
+
+        <!-- Skills -->
+        {% if profile.skills %}
+            <div class="mb-8">
+                <h2 class="section-heading">Skills</h2>
+                <div class="flex flex-wrap gap-2">
+                    {% load final_extras %} {# This line is important for the split filter #}
+                    {% for skill in profile.skills|split:',' %}
+                        <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium">{{ skill|strip }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
